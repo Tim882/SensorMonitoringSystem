@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: sensor-postgres
+    environment:
+      POSTGRES_DB: sensordb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sensor-network
+
+  sensor-processor:
+    build:
+      context: ./SensorProcessor
+      dockerfile: Dockerfile
+    container_name: sensor-processor
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=sensordb;Username=postgres;Password=password
+    depends_on:
+      - postgres
+    networks:
+      - sensor-network
+
+  sensor-emulator-worker:
+    build:
+      context: ./SensorEmulatorWorker
+      dockerfile: Dockerfile
+    container_name: sensor-emulator-worker
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ApiBaseUrl=http://sensor-processor:5000
+    depends_on:
+      - sensor-processor
+    networks:
+      - sensor-network
+
+  sensor-monitoring-ui:
+    build:
+      context: ./sensor-monitoring-ui
+      dockerfile: Dockerfile
+      target: development
+    container_name: sensor-monitoring-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - sensor-processor
+    networks:
+      - sensor-network
+    volumes:
+      - ./sensor-monitoring-ui/src:/app/src
+      - ./sensor-monitoring-ui/index.html:/app/index.html
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+
+volumes:
+  postgres_data:
+
+networks:
+  sensor-network:
+    driver: bridge
