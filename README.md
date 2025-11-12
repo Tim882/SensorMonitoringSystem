@@ -106,9 +106,12 @@
 ### Запуск приложения
 
 1. **Клонируйте репозиторий:**
+
 ```bash
 git clone <repository-url>
 cd sensor-monitoring-system
+```
+
 2. **Укажите настройки в appsettings подключения к базе данных для локального запуска в файле appsettings.json проекта SensorProcessor**
 "Host=localhost;Port=5432;Database=sensordb;Username=postgres;Password=password"
 3. **Поменяйте хост для локального запуска в файле appsettings.json проекта SensorEmulatorWorker**
