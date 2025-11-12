@@ -103,7 +103,7 @@
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-### Запуск приложения
+### Локальный запуск приложения
 
 1. **Клонируйте репозиторий:**
 
@@ -115,4 +115,19 @@ cd sensor-monitoring-system
 2. **Укажите настройки в appsettings подключения к базе данных для локального запуска в файле appsettings.json проекта SensorProcessor**
 "Host=localhost;Port=5432;Database=sensordb;Username=postgres;Password=password"
 3. **Поменяйте хост для локального запуска в файле appsettings.json проекта SensorEmulatorWorker**
-"SensorProcessor": "http://sensor-processor:5000"
+"SensorProcessor": "http://localhost:5000"
+
+4. **Для запуска UI на react необходимо выполнить следующие команды:**
+
+```bash
+npm install
+npm run dev
+```
+
+### Запуск через docker-compose
+
+Для запуска необходимо выполнить следующие команды
+
+```bash
+docker-compose -f docker-compose.yml up --build
+```
