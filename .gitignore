@@ -1,56 +1,32 @@
-# Visual Studio
-**/.vs/
-**/*.user
-**/*.suo
-**/*.userosscache
-**/*.sln.docstates
-**/*.vc.db
-**/*.vc.opendb
-
-# Build results
-**/[Dd]ebug/
-**/[Dd]ebugPublic/
-**/[Rr]elease/
-**/[Rr]eleases/
-**/x64/
-**/x86/
-**/[Ww][Ii][Nn]32/
-**/[Aa][Rr][Mm]/
-**/[Aa][Rr][Mm]64/
-**/bld/
-**/[Bb]in/
-**/[Oo]bj/
-**/[Oo]ut/
-**/msbuild.log
-**/msbuild.err
-**/msbuild.wrn
-
-# .NET Core
-**/project.lock.json
-**/project.fragment.lock.json
-**/artifacts/
-
-# NuGet
-**/[Nn]uGet/
-**/*.nuget.props
-**/*.nuget.targets
-**/*.nupkg
-**/packages/
-**/project.assets.json
-**/*.csproj.nuget.*
-**/*.nuget.dgspec.json
-
-# Node.js
+# React/Node.js
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnp.*
 .yarn/
+dist/
+build/
+.eslintcache
+.coverage/
+.coverage/
+*.tgz
+*.tar.gz
 
-# Logs
-logs/
-*.log
+# Vite
+.vite/
+vitest.config.*.timestamp-*
+vitest.config.*.mts-*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript
+*.tsbuildinfo
 
 # IDE
 .vscode/
@@ -65,7 +41,45 @@ Thumbs.db
 # Docker
 .dockerignore
 
+# ========== .NET ==========
+# Visual Studio
+**/.vs/
+**/*.user
+**/*.suo
+**/*.userosscache
+**/*.sln.docstates
+
+# Build results
+**/[Dd]ebug/
+**/[Dd]ebugPublic/
+**/[Rr]elease/
+**/[Rr]eleases/
+**/x64/
+**/x86/
+**/bld/
+**/[Bb]in/
+**/[Oo]bj/
+**/msbuild.log
+**/msbuild.err
+**/msbuild.wrn
+
+# .NET Core
+obj/
+bin/
+**/project.lock.json
+**/project.fragment.lock.json
+**/artifacts/
+
+# NuGet
+**/[Nn]uGet/
+**/*.nuget.props
+**/*.nuget.targets
+**/*.nupkg
+**/packages/
+**/project.assets.json
+**/*.csproj.nuget.*
+**/*.nuget.dgspec.json
+
 # Runtime data
 publish/
 **/appsettings.Development.json
-EOF
